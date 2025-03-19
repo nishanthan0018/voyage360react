@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../style.css";
+import {sendBookingEmail} from "../Email.js"
 
 const destinations = [
   {
@@ -69,7 +70,7 @@ const destinations = [
       "A mix of ultra-modern and traditional culture with bustling streets and ancient temples.",
   },
   {
-    id: 6,
+    id: 7,
     name: "Kanyakumari ,India",
     price: "Rs 18,999 - Rs 30,999",
     img: "https://images.pexels.com/photos/373290/pexels-photo-373290.jpeg?w=600&auto=compress&cs=tinysrgb",
@@ -124,14 +125,27 @@ const Places = () => {
 
   const handleBooking = (e) => {
     e.preventDefault();
+
     if (!formData.name || !formData.email || !formData.date) {
       alert("❌ Please fill in all fields!");
       return;
     }
-    alert(
-      `🎉 Booking confirmed for ${formData.name} to ${selectedDestination.name} on ${formData.date}!`
-    );
-    closeBookingForm();
+
+    // Call sendBookingEmail function to send an email
+    sendBookingEmail(formData, selectedDestination).then((result) => {
+        if (result === "success") {
+          alert(
+            `🎉 Booking confirmed for ${formData.name} to ${selectedDestination.name} on ${formData.date}! Check your email.`
+          );
+          closeBookingForm();
+        } else {
+          alert("❌ Something went wrong with the email. Please try again.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error during email sending:", error);
+        alert("❌ Something went wrong. Please try again later.");
+      });
   };
 
   return (
