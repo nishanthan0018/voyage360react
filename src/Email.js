@@ -6,6 +6,11 @@ export const sendBookingEmail = (formData, selectedDestination) => {
   const templateID = "template_ln4mng4"; // Correct Template ID
   const userID = "nqGc2AtDSO__4cTP_"; // Correct User ID
 
+
+
+
+
+  
   const templateParams = {
     name: formData.name,
     email: formData.email,
