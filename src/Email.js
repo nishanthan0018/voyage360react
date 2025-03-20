@@ -3,7 +3,7 @@ import emailjs from "emailjs-com";
 // Function to send email using EmailJS
 export const sendBookingEmail = (formData, selectedDestination) => {
   const serviceID = "service_6qrjhpr"; // Correct Service ID
-  const templateID = "template_ln4mng4; // Correct Template ID
+  const templateID = "template_ln4mng4"; // Correct Template ID
   const userID = "nqGc2AtDSO__4cTP_"; // Correct User ID
 
   const templateParams = {
